@@ -17,7 +17,7 @@ public class Movable : MonoBehaviour{
 
 	void Start () {
 		print ("movable");
-		t = GetComponent<Transform> ();
+		t = transform;
 		mp = Input.mousePosition;
 	}
 	
