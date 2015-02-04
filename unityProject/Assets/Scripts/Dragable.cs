@@ -9,7 +9,7 @@ public class Dragable : MonoBehaviour
 	private Rigidbody myRigidbody ;
 	private Transform myTransform  ;
 	private bool canMove = false;
-	private DropOn workArea;
+	private GameObject workArea;
 	private Transform camTransform ;
 	
 	void Start () 

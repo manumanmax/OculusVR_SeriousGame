@@ -40,7 +40,7 @@ public class Movable : MonoBehaviour{
 
 	private void changePos(Vector3 mousePos, Vector3 objectPos){
 		Vector3 movement = (mousePos - lastMousePos);
-		movement.x = -movement.x;
+		//movement.x = -movement.x;
 		Vector3 v = objectPos + movement/ratio;
 		lastMousePos = mousePos;
 		v.z = objectPos.z;
