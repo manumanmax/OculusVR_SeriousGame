@@ -7,7 +7,7 @@ public class CursorColor : MonoBehaviour {
 
 	private Texture2D t;
 	private Variables vars;
-	private bool display;
+	private bool display = true;
 
 
 	private void Awake () {
@@ -20,13 +20,14 @@ public class CursorColor : MonoBehaviour {
 
 	public void OnMouseEnter () {
 		print ("enter");
-		Cursor.SetCursor(t, Vector2.zero, CursorMode.ForceSoftware);
+        //if(display)
+		    Cursor.SetCursor(t, Vector2.zero, CursorMode.ForceSoftware);
 	}
 
 	public void OnMouseExit() {
 		print ("exit");
 		if(!display)
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 
 	void OnMouseDown () 
@@ -37,6 +38,7 @@ public class CursorColor : MonoBehaviour {
 	void OnMouseUp () 
 	{
 		display = false;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 	
 	private void FillTexture (Color color) {
