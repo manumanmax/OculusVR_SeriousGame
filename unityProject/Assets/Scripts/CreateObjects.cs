@@ -37,6 +37,12 @@ public class CreateObjects : MonoBehaviour {
             cube_3.AddComponent<CursorColor>();
             cube_3.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ; ;
             cube_3.AddComponent<BoxCollider>();
+            cube_1.AddComponent<RayCast>();
+            cube_2.AddComponent<RayCast>();
+            cube_3.AddComponent<RayCast>();
+
+
+            
 		
 		    // Areas
 			storeArea = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -47,7 +53,7 @@ public class CreateObjects : MonoBehaviour {
             dropArea.name = "dropArea";
             resultArea = GameObject.CreatePrimitive(PrimitiveType.Plane);
             resultArea.transform.position = new Vector3((float)(15 - (2*panelSpace)), 1, -4);
-            resultArea.name = "dropArea";
+            resultArea.name = "resultArea";
 		
             // Panels
 			storePanel = GameObject.CreatePrimitive(PrimitiveType.Plane);
