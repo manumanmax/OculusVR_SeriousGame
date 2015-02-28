@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class Dragable : MonoBehaviour
 {
 
 	public Camera cam  ;
+	public GameObject otherGameObject;
 	private Rigidbody myRigidbody ;
 	private Transform myTransform  ;
 	private bool canMove = false;
 	private DropOn workArea;
 	private Transform camTransform ;
-	
+	private Vector3 initialPosition;
+
 	void Start () 
 	{
-		workArea = GameObject.Find ("workArea");
-		print (workArea);
+		//workArea = otherGameObject.GetComponent<DropOn> ();
 		myRigidbody = rigidbody;
 		myTransform = transform;
 		if (!cam) 
@@ -34,11 +35,17 @@ public class Dragable : MonoBehaviour
 	void OnMouseDown () 
 	{
 		canMove = true;
+		initialPosition = myTransform.position;
 	}
 	
 	void OnMouseUp () 
 	{
 		canMove = false;
+		/*if (workArea.isValid (myTransform.position)) {
+
+		} else {
+			myTransform.position = initialPosition;
+		}*/
 	}
 	
 	void FixedUpdate () 
@@ -49,9 +56,11 @@ public class Dragable : MonoBehaviour
 		}
 
 		Vector3 mousePos = Input.mousePosition;
-		Vector3 move = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, camTransform.position.y - myTransform.position.y)) - myTransform.position;
+		//Vector3 move = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, camera.nearClipPlane)) - myTransform.position;
+		//move.z = 0;
+		//print (move);
+		//transform.position = (myTransform.position + move);		
 
-		//transform.position = (myRigidbody.position + move);
 		//myRigidbody.MovePosition(myRigidbody.position + move);
 	}
 }
