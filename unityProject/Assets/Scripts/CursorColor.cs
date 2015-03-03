@@ -40,6 +40,8 @@ public class CursorColor : MonoBehaviour {
 		display = false;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
+
+  
 	
 	private void FillTexture (Color color) {
 		for (int y = 0; y < size; y++) {
