@@ -19,13 +19,10 @@ public class CursorColor : MonoBehaviour {
 	}
 
 	public void OnMouseEnter () {
-		print ("enter");
-        //if(display)
 		    Cursor.SetCursor(t, Vector2.zero, CursorMode.ForceSoftware);
 	}
 
 	public void OnMouseExit() {
-		print ("exit");
 		if(!display)
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}

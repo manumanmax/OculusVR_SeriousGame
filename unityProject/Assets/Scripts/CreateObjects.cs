@@ -27,6 +27,8 @@ public class CreateObjects : MonoBehaviour {
         controller.AddComponent<MouseLook>();
         controller.AddComponent<Camera>();
         controller.AddComponent<GUILayer>();
+        controller.AddComponent<CameraGrabber>();
+        controller.tag = "MainCamera";
         //controller.AddComponent<MouseLook>();
 
         controller.transform.position = new Vector3((float)(15 - (panelSpace)), 5, 10);
