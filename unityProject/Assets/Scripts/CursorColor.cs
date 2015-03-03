@@ -34,11 +34,14 @@ public class CursorColor : MonoBehaviour {
 	{
         print("clecked");   
 		display = true;
+        dragOk = true;
+
 	}
 	
 	void OnMouseUp () 
 	{
 		display = false;
+        dragOk = false;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 
