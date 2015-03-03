@@ -5,7 +5,9 @@ public class CameraGrabber : MonoBehaviour {
     public GameObject hitObject = null;
     private Ray ray;
     private RaycastHit hit;
-    private 
+    private CursorColor cursCol;
+    
+     
 	// Use this for initialization
 	void Start () {
 	
@@ -17,21 +19,40 @@ public class CameraGrabber : MonoBehaviour {
 	void Update () {
 
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        if (Physics.Raycast(ray, out hit))
+        if (cursCol == null)
         {
-            hitObject = hit.transform.gameObject;
-            CursorColor cursCol = hitObject.GetComponent<CursorColor>();
-
-            if (cursCol != null)
+            if (Physics.Raycast(ray, out hit))
             {
-                if (cursCol.dragOk)
+                hitObject = hit.transform.gameObject;
+                cursCol = hitObject.GetComponent<CursorColor>();
+
+                if (cursCol != null)
                 {
-                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(
-                        new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
-                    worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
-                    hitObject.rigidbody.MovePosition(worldPos);
+                    Debug.Log("cursorColor found : " + cursCol.dragOk);
+                    if (cursCol.dragOk)
+                    {
+                        Vector3 worldPos = Camera.main.ScreenToWorldPoint(
+                            new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
+                        worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
+                        hitObject.rigidbody.MovePosition(worldPos);
+                        Debug.Log("dragging");
+                    }
                 }
+            }
+        }
+        else
+        {
+            if (cursCol.dragOk)
+            {
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(
+                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
+                worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
+                hitObject.rigidbody.MovePosition(worldPos);
+                Debug.Log("dragging");
+            }
+            else
+            {
+                cursCol = null;
             }
         }
         
