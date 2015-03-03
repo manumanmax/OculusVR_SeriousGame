@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CameraGrabber : MonoBehaviour {
-    public GameObject hitDownObject = null;
+    public GameObject hitObject = null;
     private Ray ray;
     private RaycastHit hit;
 	// Use this for initialization
@@ -10,20 +10,7 @@ public class CameraGrabber : MonoBehaviour {
 	
 	}
 
-
-    void OnMouseDown()
-    {
-        if (hitDownObject)
-        {
-            Rigidbody rb = hitDownObject.rigidbody;
-            Debug.Log(rb);
-            if(rb != null){
-                Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
-                
-                rigidbody.MovePosition(worldPos);
-            }
-        }
-    }
+   
 
 	// Update is called once per frame
 	void Update () {
@@ -32,7 +19,18 @@ public class CameraGrabber : MonoBehaviour {
         
         if (Physics.Raycast(ray, out hit))
         {
-            hitDownObject = hit.transform.gameObject;
+            hitObject = hit.transform.gameObject;
+            CursorColor cursCol = hitObject.GetComponent<CursorColor>();
+
+            if (cursCol != null)
+            {
+                if (cursCol.display)
+                {
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(
+                        new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
+                    hitObject.rigidbody.MovePosition(worldPos);
+                }
+            }
         }
         
 

@@ -7,7 +7,8 @@ public class CursorColor : MonoBehaviour {
 
 	private Texture2D t;
 	private Variables vars;
-	private bool display = true;
+	public bool display = false;
+    public bool dragOk = false;
 
 
 	private void Awake () {
@@ -19,7 +20,9 @@ public class CursorColor : MonoBehaviour {
 	}
 
 	public void OnMouseEnter () {
-		    Cursor.SetCursor(t, Vector2.zero, CursorMode.ForceSoftware);
+        print("entred");
+        display = true;
+		Cursor.SetCursor(t, Vector2.zero, CursorMode.ForceSoftware);
 	}
 
 	public void OnMouseExit() {
@@ -27,8 +30,9 @@ public class CursorColor : MonoBehaviour {
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 
-	void OnMouseDown () 
+    void OnMouseDown() 
 	{
+        print("clecked");   
 		display = true;
 	}
 	
