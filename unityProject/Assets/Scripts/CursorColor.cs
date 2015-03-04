@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(RayCast))]
 public class CursorColor : MonoBehaviour {
 	public int size = 6;
 	public GameObject otherGameObject;
@@ -26,7 +27,7 @@ public class CursorColor : MonoBehaviour {
 	}
 
 	public void OnMouseExit() {
-		if(!display)
+		if(!dragOk)
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 
@@ -40,9 +41,11 @@ public class CursorColor : MonoBehaviour {
 	
 	void OnMouseUp () 
 	{
+        if(display)
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		display = false;
         dragOk = false;
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+        
 	}
 
   
