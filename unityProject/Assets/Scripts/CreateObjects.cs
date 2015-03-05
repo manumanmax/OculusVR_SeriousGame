@@ -57,8 +57,6 @@ public class CreateObjects : MonoBehaviour
         cube_3.AddComponent<RayCast>();
 
 
-
-
         // Areas
         storeArea = GameObject.CreatePrimitive(PrimitiveType.Plane);
         storeArea.name = "storeArea";
@@ -102,7 +100,7 @@ public class CreateObjects : MonoBehaviour
         dropLight.transform.Translate(new Vector3(-panelSpace, 0, 0));
         dropLight.name = "dropLight";
 
-
+        
         // cursor loking
         Screen.lockCursor = true;
 
@@ -121,6 +119,11 @@ public class CreateObjects : MonoBehaviour
             {
                 Screen.lockCursor = true;
             }
+    }
+
+    void OnGUI()
+    {
+        GUI.DrawTexture(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorWidth, cursorHeight), cursorImage);
     }
 }
 	
